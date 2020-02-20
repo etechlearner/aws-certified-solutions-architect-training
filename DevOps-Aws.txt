@@ -1,0 +1,144 @@
+
+
+
+Aws Tutorial Task
+
+
+- DNS managed on godady   
+	- note : https is requird by godady 
+  - bind a record  elastic ip for ec2
+  - bind a record  elastic ip for loadbalancer
+
+
+- Aws deployment Region is Paris 
+
+- In 
+
+--------------------------------------------------------
+VPC
+
+--------------------------------------------------------
+Create Group  - Name Space 
+--------------------------------------------------------
+IMA
+--------------------------------------------------------
+
+EC2 new instance 
+ - step 3
+ - VPC  same  for internal communication
+ - IMA  service account limited access
+ - Security Group for firewall port 
+ - Set Elastic ip ( static ip)
+- Installed Thinkgs Open firewall
+	-  
+
+------------------------------------------------------
+Cluster And Service (Containers)
+===========================================================================
+
+------------------------------------------------------
+Cluster  - ECS
+
+- Create  Name  
+- Task Defination
+------------------------------------------------------
+Tasks Defination  -- node pool
+- Create Task 
+- Option (Saas ie. (Farget) or EC2 )
+- select number of node pool
+- ima service account 
+- Container 
+------------------------------------------------------
+Container  - Workload
+------------------------------------------------------
+- Name 
+- Docker hub image
+- Soft limit 
+- Interal container port for this  8080
+- Optional health check internal app
+- Envoirments
+-----------------------------------------------------
+Envoirment Variable to the above 
+- Appurl = 'api/appservice/v1'
+-----------------------------------------------------
+Volume to the above 
+------------------------------------------------------
+
+
+------------------------------------------------------
+Service (Container) -- pods
+- Name
+- Task Defination 
+- Loadbalancer  (ELB)
+- Vpc target group
+- Auto scaling 
+- number of task if 0 then off and if 1 then start with 1 task
+===========================================================================
+
+
+
+
+
+===========================================================================
+
+------------------------------------------------------
+Networks 
+===========================================================================
+Loadbalancer (prod)  For ELB    Application Loadbalancer
+- targert group or multiple intance routing (to route each service ) 
+- create
+- VPC
+- Security Group firewall
+- ACM  for certificates Add   - for prod 
+- Set default Elastic ip ( static ip)
+
+
+---------------------------------------------------------------
+
+Tagert Groups  (Service Application)
+
+-  protocol  -> https
+-  port of  container 
+-  type ( instance  / ip)
+-  VPC  
+
+the target group for create vpc of the each service container 
+
+
+
+--------------------------------------------------------
+Listener port wise
+--------------------------------------------------------
+- add Listener
+- certificate if port 443  
+- rules
+
+Rules Ingress  for mapping loadbalancer with target Group
+--------------------------------------------------------
+- if  url path -> eg . ['test', 'test123', '/api/appservice/v1']
+- then  forward to -> target group  vpc dropdown
+
+--------------------------------------------------------
+
+
+Container Logs  Cloud Watch
+--------------------------------------------------------
+- Cloud Watch  -> Log Groups -> service name
+- create logs for each service 
+===========================================================================
+
+
+
+------------------------------------------------------
+Jenkins 
+===========================================================================
+
+
+
+
+===========================================================================
+
+
+
+
+
